@@ -88,7 +88,7 @@
      <!-- TEST 2  -->
     <h2>TEST 2
         contare gli insegnanti che hanno lo stesso uffucio 
-        </h2>
+    </h2>
     <p>SELECT COUNT(`id`) ,`office_address`
         FROM `teachers` 
         GROUP BY `office_address`;
@@ -97,16 +97,16 @@
      <!-- TEST 3  -->
     <h2>TEST 3
         contare la media voti per ogni appello  
-        </h2>
+    </h2>
     <p>SELECT AVG(`vote`), `exam_id`
         FROM `exam_student` 
         GROUP BY `exam_id`;
     </p>
 
-     <!-- TEST 4  -->
+    <!-- TEST 4  -->
     <h2>TEST 4
           contare quanti corsi di laurea per ogni dipartimento
-        </h2>
+    </h2>
     <p>SELECT `department_id`, COUNT(`department_id`) AS `total`
         FROM `degrees` 
         GROUP BY `department_id`;
@@ -114,5 +114,50 @@
     <hr>
     <!-- join -->
     <h1>JOIN</h1>
+
+    <!-- TEST 1  -->
+    <h2>TEST 1
+        selezionare tutti gli studenti iscritti al corso di laurea di economia 
+    </h2>
+    <p>SELECT * 
+        FROM `students` 
+        INNER JOIN `degrees` ON `students`.`degree_id`= `degrees`.`id`
+        WHERE `degrees`.`name` = 'Corso di Laurea in Economia';
+    </p>
+
+    <!-- TEST 2  -->
+    <h2>TEST 2
+         selezionare tutti i corsi di laurea del dipartimento di neuroscience
+    </h2>
+    <p>SELECT * 
+        SELECT * 
+        ROM `degrees` 
+        INNER JOIN `departments` ON `degrees`.`department_id` = `departments`.`id` 
+        WHERE `departments`.`name` = 'Dipartimento di Neuroscienze';
+    </p>
+
+    <!-- TEST 3  -->
+    <h2>TEST 3
+         selezionare tutti i corsi in cui insegna fulvio amato id=44
+    </h2>
+    <p>SELECT * 
+        FROM `teachers` 
+        INNER JOIN `course_teacher` ON `teachers`.`id`= `course_teacher`.`teacher_id`
+        INNER JOIN `courses` ON `course_teacher`.`course_id` = `courses`.`id`
+        WHERE `teachers`.`id` = 44;
+    </p>
+
+    <!-- TEST 3  -->
+    <h2>TEST 4
+        Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e ilrelativo dipartimento, in ordine alfabetico per cognome e nome
+    </h2>
+    <p>SELECT *
+        FROM `students`
+        INNER JOIN `degrees` ON `degrees`.`id` = `students`.`degree_id` 
+        INNER JOIN `departments` ON `departments`.`id` = `degrees`.`department_id`
+        ORDER BY`students`.`surname`, `students`.`name`;
+    </p>
+
+
 </body>
 </html>
